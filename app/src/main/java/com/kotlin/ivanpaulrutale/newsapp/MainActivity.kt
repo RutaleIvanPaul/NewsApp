@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         news.add(News("Freaking"))
         news.add(News("Day"))
 
-        val adapter = CustomAdapter(news)
+        val adapter = CustomAdapter(news,this)
         recyclerView.adapter = adapter
     }
 }
