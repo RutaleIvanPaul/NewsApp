@@ -21,7 +21,7 @@ class CustomAdapter
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val news:News = newsList[position]
-        holder?.textView.text = news.headline
+        holder.textView.text = news.headline
 
         holder.itemView.setOnClickListener{view ->
             val intent = Intent(view.context, NewsDetails::class.java)
