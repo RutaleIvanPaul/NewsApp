@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         populateSpinner()
-        replaceFragment(NewyorkFragment())
+//        replaceFragment(NewyorkFragment())
         bottomNavigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
     }
 

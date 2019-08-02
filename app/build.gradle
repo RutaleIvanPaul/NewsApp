@@ -21,6 +21,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    //Security APIs
+    buildTypes.each {
+        it.buildConfigField 'String', 'ApiSecKey', ApiKey
+    }
 }
 
 dependencies {
@@ -35,4 +39,12 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.android.support:recyclerview-v7:28.0.0'
     implementation 'com.android.support:cardview-v7:28.0.0'
+
+    //Fuel Http Client
+    implementation 'com.github.kittinunf.fuel:fuel:2.2.0'         // for JVM (base)
+    implementation 'com.github.kittinunf.fuel:fuel-android:2.2.0' // adds Android support
+    implementation 'com.github.kittinunf.fuel:fuel-gson:2.2.0'    // adds gson support
+
+    // Google's Gson
+    implementation 'com.google.code.gson:gson:2.8.5'
 }
