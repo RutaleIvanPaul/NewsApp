@@ -46,7 +46,7 @@ class SharedFragment : Fragment() {
         news.add(News("Freaking"))
         news.add(News("Day"))
 
-        val customAdapter = CustomAdapter(news, context!!)
+        val customAdapter = CustomAdapter()
 
         recyclerView.adapter = customAdapter
 

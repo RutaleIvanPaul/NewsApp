@@ -1,6 +1,7 @@
 package com.kotlin.ivanpaulrutale.newsapp.Views
 
 
+import android.app.Activity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -11,6 +12,8 @@ import android.view.ViewGroup
 import com.kotlin.ivanpaulrutale.newsapp.CustomAdapter
 import com.kotlin.ivanpaulrutale.newsapp.News
 import com.kotlin.ivanpaulrutale.newsapp.R
+import com.kotlin.ivanpaulrutale.newsapp.providers.customAdapter
+import com.kotlin.ivanpaulrutale.newsapp.providers.getNews
 import java.util.ArrayList
 
 
@@ -41,22 +44,8 @@ class NewyorkFragment : Fragment() {
 
         recyclerView.layoutManager = linearLayoutManager
 
-        val news = ArrayList<News>()
-
-        news.add(News("Newyork"))
-        news.add(News("All"))
-        news.add(News("Freaking"))
-        news.add(News("Day"))
-
-        val customAdapter = CustomAdapter(news, context!!)
-
         recyclerView.adapter = customAdapter
-
-
-//
-//        val adapter = CustomAdapter(news,this)
-//        recyclerView.adapter = adapter
-//        return inflater.inflate(R.layout.fragment_news, container, false)
+        getNews(activity as Activity,"us")
         return view
     }
 
