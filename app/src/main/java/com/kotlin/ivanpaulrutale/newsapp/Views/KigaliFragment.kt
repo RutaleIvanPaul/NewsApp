@@ -35,28 +35,7 @@ class KigaliFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_news, container, false)
         // Inflate the layout for this fragment
-        val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view)
 
-        val linearLayoutManager = LinearLayoutManager(activity)
-
-        recyclerView.layoutManager = linearLayoutManager
-
-        val news = ArrayList<News>()
-
-        news.add(News("Winning"))
-        news.add(News("All"))
-        news.add(News("Freaking"))
-        news.add(News("Day"))
-
-        val customAdapter = CustomAdapter(news, context!!)
-
-        recyclerView.adapter = customAdapter
-
-
-//
-//        val adapter = CustomAdapter(news,this)
-//        recyclerView.adapter = adapter
-//        return inflater.inflate(R.layout.fragment_news, container, false)
         return view
     }
 

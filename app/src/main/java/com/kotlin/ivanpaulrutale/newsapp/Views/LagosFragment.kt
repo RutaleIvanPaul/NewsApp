@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import com.kotlin.ivanpaulrutale.newsapp.CustomAdapter
 import com.kotlin.ivanpaulrutale.newsapp.News
 import com.kotlin.ivanpaulrutale.newsapp.R
+import com.kotlin.ivanpaulrutale.newsapp.Services.fetchJSON
 import java.util.ArrayList
 
 
@@ -41,22 +42,11 @@ class LagosFragment : Fragment() {
 
         recyclerView.layoutManager = linearLayoutManager
 
-        val news = ArrayList<News>()
 
-        news.add(News("Lagos"))
-        news.add(News("All"))
-        news.add(News("Freaking"))
-        news.add(News("Day"))
-
-        val customAdapter = CustomAdapter(news, context!!)
+        val customAdapter = CustomAdapter(fetchJSON("ng"), context!!)
 
         recyclerView.adapter = customAdapter
 
-
-//
-//        val adapter = CustomAdapter(news,this)
-//        recyclerView.adapter = adapter
-//        return inflater.inflate(R.layout.fragment_news, container, false)
         return view
     }
 
