@@ -61,19 +61,19 @@ class MainActivity : AppCompatActivity() {
 
         when(position){
             "Lagos"->{
-                newFragment = FragmentTemplate.newInstance("ng")
+                newFragment = FragmentTemplate.newInstance("Nigeria")
             }
             "Nairobi"->{
-                newFragment = FragmentTemplate.newInstance("ke")
+                newFragment = FragmentTemplate.newInstance("Kenya")
             }
             "Kampala"->{
-                newFragment = FragmentTemplate.newInstance("ug")
+                newFragment = FragmentTemplate.newInstance("Uganda")
             }
             "Newyork"->{
-                newFragment = FragmentTemplate.newInstance("us")
+                newFragment = FragmentTemplate.newInstance("Newyork")
             }
             "Kigali"->{
-                newFragment = FragmentTemplate.newInstance("rw")
+                newFragment = FragmentTemplate.newInstance("Rwanda")
             }
         }
         replaceFragment(newFragment!!)

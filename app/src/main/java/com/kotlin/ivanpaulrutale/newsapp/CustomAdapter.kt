@@ -5,7 +5,9 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import com.squareup.picasso.Picasso
 
 class CustomAdapter : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
@@ -24,6 +26,7 @@ class CustomAdapter : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
         val news:Article = newsList[position]
         holder.titleTextView.text = news.title
         holder.descriptionTextView.text = news.description
+        Picasso.with(holder.itemView.context).load(news.urlToImage).into(holder.imageView)
 
         holder.itemView.setOnClickListener{view ->
             val intent = Intent(view.context, NewsDetails::class.java)
@@ -33,6 +36,7 @@ class CustomAdapter : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
             intent.putExtra("source", news.source.name)
             intent.putExtra("author", news.author)
             intent.putExtra("url", news.url)
+            intent.putExtra("urlToImage", news.urlToImage)
             view.context.startActivity(intent)
         }
     }
@@ -40,5 +44,6 @@ class CustomAdapter : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
     class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
         val titleTextView = itemView.findViewById(R.id.headlineTextView) as TextView
         val descriptionTextView = itemView.findViewById(R.id.descriptionTextView) as TextView
+        val imageView = itemView.findViewById<ImageView>(R.id.newsImage)!!
     }
 }
