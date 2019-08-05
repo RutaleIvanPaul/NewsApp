@@ -62,38 +62,6 @@
                     tools:text="Sample title for news title that will and this will display how text shows up on the news app"/>
 
 
-            <android.support.v7.widget.AppCompatButton
-                    android:id="@+id/floatingActionSaveButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="41dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:text="@string/save"
-
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/floatingActionShareButton"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintHorizontal_chainStyle="spread_inside"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/descriptionTextView"/>
-
-            <android.support.v7.widget.AppCompatButton
-                    android:id="@+id/floatingActionShareButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:text="@string/share"
-                    app:layout_constraintBottom_toBottomOf="@+id/floatingActionSaveButton"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/floatingActionSaveButton"
-                    app:layout_constraintTop_toTopOf="@+id/floatingActionSaveButton"/>
-
         </android.support.constraint.ConstraintLayout>
 
     </android.support.v7.widget.CardView>
