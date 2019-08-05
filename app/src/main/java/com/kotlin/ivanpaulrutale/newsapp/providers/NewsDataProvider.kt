@@ -12,7 +12,7 @@ import java.lang.Exception
 class NewsDataProvider {
 
     fun getNews(country:String,responseHandler:(result:NewsReport) -> Unit){
-        val url = BASE_URL +"top-headlines?country="+country+"&apiKey="+ BuildConfig.ApiSecKey
+        val url = BASE_URL +"everything?q="+country+"&apiKey="+ BuildConfig.ApiSecKey
         url.httpGet().responseObject(NewsDataDeserializer()){_,response,result ->
             if (response.statusCode != 200){
                 throw Exception("Unable to get News!!!")
