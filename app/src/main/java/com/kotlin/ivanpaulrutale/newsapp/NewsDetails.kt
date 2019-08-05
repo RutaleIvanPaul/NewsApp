@@ -15,12 +15,19 @@ class NewsDetails : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         val news_headline = intent.getStringExtra("news_headline")
+        val news_description = intent.getStringExtra("news_description")
+        val publish_date = intent.getStringExtra("publish_date")
+        val source = intent.getStringExtra("source")
+        val author = intent.getStringExtra("author")
+        val url = intent.getStringExtra("url")
         findViewById<TextView>(R.id.headlineTextView).text = news_headline
+        findViewById<TextView>(R.id.descriptionTextView).text = news_description
+        findViewById<TextView>(R.id.publishDateTextView).text = publish_date
+        findViewById<TextView>(R.id.sourceTextView).text = source
+        findViewById<TextView>(R.id.authorTextView).text = author
+        findViewById<TextView>(R.id.sourceUrlTextView).text = url
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
+
     }
 
 }

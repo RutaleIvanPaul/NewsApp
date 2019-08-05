@@ -17,7 +17,8 @@ class MainActivity : AppCompatActivity() {
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item->
         when(item.itemId){
             R.id.home -> {
-                replaceFragment(KampalaFragment())
+                replaceFragment(FragmentTemplate.newInstance("ug"))
+                populateSpinner()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.saved -> {
@@ -56,23 +57,26 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showSelectedItems(position: String) {
+        var newFragment:FragmentTemplate?=null
+
         when(position){
             "Lagos"->{
-                replaceFragment(LagosFragment())
+                newFragment = FragmentTemplate.newInstance("ng")
             }
             "Nairobi"->{
-                replaceFragment(NairobiFragment())
+                newFragment = FragmentTemplate.newInstance("ke")
             }
             "Kampala"->{
-                replaceFragment(KampalaFragment())
+                newFragment = FragmentTemplate.newInstance("ug")
             }
             "Newyork"->{
-                replaceFragment(NewyorkFragment())
+                newFragment = FragmentTemplate.newInstance("us")
             }
             "Kigali"->{
-                replaceFragment(KigaliFragment())
+                newFragment = FragmentTemplate.newInstance("rw")
             }
         }
+        replaceFragment(newFragment!!)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

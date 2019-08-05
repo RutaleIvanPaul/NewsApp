@@ -2,6 +2,7 @@ package com.kotlin.ivanpaulrutale.newsapp.Views
 
 
 import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -26,7 +27,9 @@ private const val ARG_PARAM2 = "param2"
  * A simple [Fragment] subclass.
  *
  */
-class KigaliFragment : Fragment() {
+class FragmentTemplate : Fragment() {
+
+    var country:String ?= null
 
 
     override fun onCreateView(
@@ -45,8 +48,24 @@ class KigaliFragment : Fragment() {
         recyclerView.layoutManager = linearLayoutManager
 
         recyclerView.adapter = customAdapter
-        getNews(activity as Activity,"rw")
+
+        getNews(activity as Activity,country!!)
         return view
+    }
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        arguments?.getString("country")?.let {
+            country = it
+        }
+    }
+
+    companion object{
+        fun newInstance(country:String) = FragmentTemplate().apply {
+            arguments = Bundle().apply {
+                putString("country",country)
+            }
+        }
     }
 
 
