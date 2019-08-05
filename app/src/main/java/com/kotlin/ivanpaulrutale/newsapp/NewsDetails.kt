@@ -1,8 +1,10 @@
 package com.kotlin.ivanpaulrutale.newsapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Button
 import android.widget.TextView
 
 import kotlinx.android.synthetic.main.activity_news_details.*
@@ -26,6 +28,16 @@ class NewsDetails : AppCompatActivity() {
         findViewById<TextView>(R.id.sourceTextView).text = source
         findViewById<TextView>(R.id.authorTextView).text = author
         findViewById<TextView>(R.id.sourceUrlTextView).text = url
+
+        val sendIntent: Intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, "Checkout this news:\n$url\nShared from NewsApp")
+            type = "text/plain"
+        }
+
+        findViewById<Button>(R.id.ShareButton).setOnClickListener {
+            startActivity(sendIntent)
+        }
 
 
     }
