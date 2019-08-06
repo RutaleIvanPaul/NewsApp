@@ -1,4 +1,4 @@
-package com.kotlin.ivanpaulrutale.newsapp
+package com.kotlin.ivanpaulrutale.newsapp.Views
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,9 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import com.kotlin.ivanpaulrutale.newsapp.R
+import com.kotlin.ivanpaulrutale.newsapp.database.database
 import com.squareup.picasso.Picasso
 
 import kotlinx.android.synthetic.main.activity_news_details.*
+import org.jetbrains.anko.db.insert
 
 class NewsDetails : AppCompatActivity() {
 
@@ -45,7 +48,24 @@ class NewsDetails : AppCompatActivity() {
             startActivity(sendIntent)
         }
 
+        findViewById<Button>(R.id.SaveButton).setOnClickListener {
+            saveArticle(source,author,news_headline,news_description,url,urlToImage,publish_date)
+        }
 
+    }
+
+    private fun saveArticle(source_name:String,author:String,title:String,description:String,url:String,urlToImage:String,publishedAt:String) {
+        database.use {
+            insert("Article",
+                "source_name" to source_name,
+                "author" to author,
+                "title" to title,
+                "description" to description,
+                "url" to url,
+                "urlToImage" to urlToImage,
+                "publishedAt" to publishedAt
+            )
+        }
     }
 
 }

@@ -1,7 +1,7 @@
 package com.kotlin.ivanpaulrutale.newsapp.providers
 
 import android.app.Activity
-import com.kotlin.ivanpaulrutale.newsapp.CustomAdapter
+import com.kotlin.ivanpaulrutale.newsapp.adapters.CustomAdapter
 
 private val newsDataProvider: NewsDataProvider = NewsDataProvider()
 
