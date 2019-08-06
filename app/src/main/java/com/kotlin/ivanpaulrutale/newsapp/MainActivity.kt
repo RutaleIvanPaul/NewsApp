@@ -50,7 +50,6 @@ class MainActivity : AppCompatActivity() {
 
                 override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
                     showSelectedItems(cityNames[position])
-                    Toast.makeText(this@MainActivity, cityNames[position], Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -69,8 +68,8 @@ class MainActivity : AppCompatActivity() {
             "Kampala"->{
                 newFragment = FragmentTemplate.newInstance("Uganda")
             }
-            "Newyork"->{
-                newFragment = FragmentTemplate.newInstance("Newyork")
+            "NewYork"->{
+                newFragment = FragmentTemplate.newInstance("NewYork")
             }
             "Kigali"->{
                 newFragment = FragmentTemplate.newInstance("Rwanda")
@@ -85,6 +84,7 @@ class MainActivity : AppCompatActivity() {
         populateSpinner()
 //        replaceFragment(NewyorkFragment())
         bottomNavigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
+
     }
 
     private fun replaceFragment(fragment:Fragment){

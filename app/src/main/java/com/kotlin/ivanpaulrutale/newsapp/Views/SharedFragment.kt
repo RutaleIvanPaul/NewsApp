@@ -8,7 +8,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.kotlin.ivanpaulrutale.newsapp.CustomAdapter
+import com.kotlin.ivanpaulrutale.newsapp.adapters.CustomAdapter
 import com.kotlin.ivanpaulrutale.newsapp.News
 import com.kotlin.ivanpaulrutale.newsapp.R
 import java.util.ArrayList

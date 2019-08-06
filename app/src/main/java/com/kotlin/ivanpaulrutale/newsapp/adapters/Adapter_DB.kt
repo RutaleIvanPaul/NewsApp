@@ -1,4 +1,4 @@
-package com.kotlin.ivanpaulrutale.newsapp
+package com.kotlin.ivanpaulrutale.newsapp.adapters
 
 import android.content.Intent
 import android.support.v7.widget.RecyclerView
@@ -7,11 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.kotlin.ivanpaulrutale.newsapp.Article
+import com.kotlin.ivanpaulrutale.newsapp.Article_DB
+import com.kotlin.ivanpaulrutale.newsapp.R
+import com.kotlin.ivanpaulrutale.newsapp.Views.NewsDetails
 import com.squareup.picasso.Picasso
 
-class CustomAdapter : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
+class Adapter_DB : RecyclerView.Adapter<Adapter_DB.ViewHolder>() {
 
-    val newsList: ArrayList<Article> = arrayListOf()
+    val newsList: ArrayList<Article_DB> = arrayListOf()
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
         val v = LayoutInflater.from(p0.context).inflate(R.layout.list_item,p0,false)
@@ -23,7 +27,7 @@ class CustomAdapter : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val news:Article = newsList[position]
+        val news: Article_DB = newsList[position]
         holder.titleTextView.text = news.title
         holder.descriptionTextView.text = news.description
         Picasso.with(holder.itemView.context).load(news.urlToImage).into(holder.imageView)
@@ -33,7 +37,7 @@ class CustomAdapter : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
             intent.putExtra("news_headline", news.title)
             intent.putExtra("news_description", news.description)
             intent.putExtra("publish_date", news.publishedAt)
-            intent.putExtra("source", news.source.name)
+            intent.putExtra("source", news.source)
             intent.putExtra("author", news.author)
             intent.putExtra("url", news.url)
             intent.putExtra("urlToImage", news.urlToImage)

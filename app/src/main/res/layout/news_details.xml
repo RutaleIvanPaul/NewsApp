@@ -146,7 +146,7 @@
             tools:text="Sample title for news title that will and this will display how text shows up on the news app" />
 
     <android.support.v7.widget.AppCompatButton
-            android:id="@+id/floatingActionSaveButton"
+            android:id="@+id/SaveButton"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
@@ -168,10 +168,10 @@
             android:clickable="true"
             android:focusable="true"
             android:text="@string/share"
-            app:layout_constraintBottom_toBottomOf="@+id/floatingActionSaveButton"
+            app:layout_constraintBottom_toBottomOf="@+id/SaveButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/floatingActionSaveButton"
-            app:layout_constraintTop_toTopOf="@+id/floatingActionSaveButton"/>
+            app:layout_constraintStart_toEndOf="@+id/SaveButton"
+            app:layout_constraintTop_toTopOf="@+id/SaveButton"/>
 
 </android.support.constraint.ConstraintLayout>
