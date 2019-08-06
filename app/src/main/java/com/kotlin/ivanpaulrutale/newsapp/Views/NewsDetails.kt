@@ -12,6 +12,7 @@ import com.squareup.picasso.Picasso
 
 import kotlinx.android.synthetic.main.activity_news_details.*
 import org.jetbrains.anko.db.insert
+import java.lang.Exception
 
 class NewsDetails : AppCompatActivity() {
 
@@ -28,6 +29,7 @@ class NewsDetails : AppCompatActivity() {
         val author = intent.getStringExtra("author")
         val url = intent.getStringExtra("url")
         val urlToImage = intent.getStringExtra("urlToImage")
+        val from_db = intent.getBooleanExtra("from_db",false)
         val imageView = findViewById<ImageView>(R.id.newsImage)
         findViewById<TextView>(R.id.headlineTextView).text = news_headline
         findViewById<TextView>(R.id.descriptionTextView).text = news_description
@@ -50,10 +52,34 @@ class NewsDetails : AppCompatActivity() {
             startActivity(sendIntent)
         }
 
-        findViewById<Button>(R.id.SaveButton).setOnClickListener {
-            saveArticle(source,author,news_headline,news_description,url,urlToImage,publish_date)
+        if (from_db){
+            val id = intent.getLongExtra("id",0)
+            val delete_button = findViewById<Button>(R.id.SaveButton)
+            delete_button.text = "Delete"
+            delete_button.setOnClickListener {
+                deleteArticle(id)
+            }
+        }
+        else{
+            findViewById<Button>(R.id.SaveButton).setOnClickListener {
+                saveArticle(source,author,news_headline,news_description,url,urlToImage,publish_date)
+            }
         }
 
+    }
+
+    private fun deleteArticle(id:Long) {
+        try {
+            database.use {
+                delete("Article","_id=$id", arrayOf())
+                delete("Shared_Article","_id=$id", arrayOf())
+            }
+        }
+        catch (e:Exception){
+            database.use {
+                val numRowsDeleted = delete("Shared_Article","_id=$id", arrayOf())
+        }
+        }
     }
 
     private fun saveSharedArticle(source_name:String,author:String,title:String,description:String,url:String,urlToImage:String,publishedAt:String) {

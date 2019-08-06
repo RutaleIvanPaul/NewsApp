@@ -34,6 +34,7 @@ class Adapter_DB : RecyclerView.Adapter<Adapter_DB.ViewHolder>() {
 
         holder.itemView.setOnClickListener{view ->
             val intent = Intent(view.context, NewsDetails::class.java)
+            intent.putExtra("id",news.id)
             intent.putExtra("news_headline", news.title)
             intent.putExtra("news_description", news.description)
             intent.putExtra("publish_date", news.publishedAt)
@@ -41,6 +42,7 @@ class Adapter_DB : RecyclerView.Adapter<Adapter_DB.ViewHolder>() {
             intent.putExtra("author", news.author)
             intent.putExtra("url", news.url)
             intent.putExtra("urlToImage", news.urlToImage)
+            intent.putExtra("from_db",true)
             view.context.startActivity(intent)
         }
     }
