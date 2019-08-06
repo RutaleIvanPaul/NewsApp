@@ -19,6 +19,7 @@ class NewsDetails : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_news_details)
         setSupportActionBar(toolbar)
+        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
 
         val news_headline = intent.getStringExtra("news_headline")
         val news_description = intent.getStringExtra("news_description")

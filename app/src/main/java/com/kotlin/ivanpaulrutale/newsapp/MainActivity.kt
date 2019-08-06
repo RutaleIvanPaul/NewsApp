@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item->
         when(item.itemId){
             R.id.home -> {
-                replaceFragment(FragmentTemplate.newInstance("ug"))
+                replaceFragment(FragmentTemplate.newInstance("Uganda"))
                 populateSpinner()
                 return@OnNavigationItemSelectedListener true
             }
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun populateSpinner() {
 
-        val cityNames = arrayOf("Kampala","Lagos", "Nairobi", "Newyork", "Kigali")
+        val cityNames = arrayOf("Kampala","Lagos", "Nairobi", "NewYork", "Kigali")
         val spinner = findViewById<Spinner>(R.id.spinner)
         if (spinner != null) {
             val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, cityNames)
@@ -82,7 +82,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         populateSpinner()
-//        replaceFragment(NewyorkFragment())
         bottomNavigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
 
     }
