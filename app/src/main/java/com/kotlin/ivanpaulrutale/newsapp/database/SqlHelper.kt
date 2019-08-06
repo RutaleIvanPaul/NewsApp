@@ -19,7 +19,18 @@ class SqlHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "saved_news") {
     }
 
     override fun onCreate(db: SQLiteDatabase) {
+
         db.createTable("Article",true,
+            "_id" to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
+            "source_name" to TEXT,
+            "author" to TEXT,
+            "title" to TEXT,
+            "description" to TEXT,
+            "url" to TEXT,
+            "urlToImage" to TEXT,
+            "publishedAt" to TEXT)
+
+        db.createTable("Shared_Article",true,
             "_id" to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
             "source_name" to TEXT,
             "author" to TEXT,
@@ -33,7 +44,8 @@ class SqlHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "saved_news") {
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
     }
 
-}
+    }
+
 
 // Access property for Context
 val Context.database: SqlHelper

@@ -45,6 +45,7 @@ class NewsDetails : AppCompatActivity() {
         }
 
         findViewById<Button>(R.id.ShareButton).setOnClickListener {
+            saveSharedArticle(source,author,news_headline,news_description,url,urlToImage,publish_date)
             startActivity(sendIntent)
         }
 
@@ -52,6 +53,21 @@ class NewsDetails : AppCompatActivity() {
             saveArticle(source,author,news_headline,news_description,url,urlToImage,publish_date)
         }
 
+    }
+
+    private fun saveSharedArticle(source_name:String,author:String,title:String,description:String,url:String,urlToImage:String,publishedAt:String) {
+        database.use {
+            insert(
+                "Shared_Article",
+                "source_name" to source_name,
+                "author" to author,
+                "title" to title,
+                "description" to description,
+                "url" to url,
+                "urlToImage" to urlToImage,
+                "publishedAt" to publishedAt
+            )
+        }
     }
 
     private fun saveArticle(source_name:String,author:String,title:String,description:String,url:String,urlToImage:String,publishedAt:String) {

@@ -8,16 +8,15 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.kotlin.ivanpaulrutale.newsapp.Article_DB
 import com.kotlin.ivanpaulrutale.newsapp.adapters.CustomAdapter
 import com.kotlin.ivanpaulrutale.newsapp.News
 import com.kotlin.ivanpaulrutale.newsapp.R
+import com.kotlin.ivanpaulrutale.newsapp.adapters.Adapter_DB
+import com.kotlin.ivanpaulrutale.newsapp.database.database
+import org.jetbrains.anko.db.classParser
+import org.jetbrains.anko.db.select
 import java.util.ArrayList
-
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
@@ -39,18 +38,21 @@ class SharedFragment : Fragment() {
 
         recyclerView.layoutManager = linearLayoutManager
 
-        val news = ArrayList<News>()
+        val news = ArrayList<Article_DB>()
+        news.addAll(returnArticles() as ArrayList<Article_DB>)
 
-        news.add(News("Sharing"))
-        news.add(News("All"))
-        news.add(News("Freaking"))
-        news.add(News("Day"))
-
-        val customAdapter = CustomAdapter()
-
-        recyclerView.adapter = customAdapter
+        val adapter_DB = Adapter_DB()
+        adapter_DB.newsList.addAll(news)
+        recyclerView.adapter = adapter_DB
 
         return view
+    }
+
+    private fun returnArticles(): List<Article_DB>? {
+        return activity?.database?.use {
+            select("Shared_Article"
+            ).parseList(classParser<Article_DB>())
+        }
     }
 
 
