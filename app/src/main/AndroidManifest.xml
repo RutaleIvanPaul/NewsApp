@@ -10,14 +10,14 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <activity
-                android:name=".Views.NewsDetails"
+                android:name=".views.NewsDetails"
                 android:label="@string/title_activity_news_details"
                 android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".MainActivity"/>
+                    android:value=".views.MainActivity"/>
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".views.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

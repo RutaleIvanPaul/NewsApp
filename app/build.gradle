@@ -1,8 +1,12 @@
+
 apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'jacoco'
+apply from: rootProject.file('app/jacoco.gradle')
 
 android {
     compileSdkVersion 28
@@ -20,7 +24,17 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        debug{
+            testCoverageEnabled = true
+        }
     }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+
     //Security APIs
     buildTypes.each {
         it.buildConfigField 'String', 'ApiSecKey', ApiKey
@@ -53,4 +67,35 @@ dependencies {
 
     //Anko
     implementation 'org.jetbrains.anko:anko-sqlite:0.10.8'
+
+    //Roboelectric
+    testImplementation 'org.robolectric:robolectric:4.3'
+
+    //Test Rule
+    androidTestImplementation 'com.android.support.test:rules:1.0.2'
+
+    //Espresso Contrib
+    androidTestImplementation ('com.android.support.test.espresso:espresso-contrib:3.0.1') {
+        exclude module: 'support-annotations'
+        exclude module: 'support-v4'
+        exclude module: 'recyclerview-v7'
+    }
+
+    //Espresso Intents
+    androidTestImplementation 'com.android.support.test.espresso:espresso-intents:3.0.2'
+
+
 }
+
+
+jacoco{
+    toolVersion = "0.8.4"
+    reportsDir = file("$buildDir/reports")
+}
+
+jacocoTestReport {
+    reports {
+        html.enabled true
+    }
+}
+

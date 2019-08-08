@@ -1,6 +1,8 @@
-package com.kotlin.ivanpaulrutale.newsapp.Views
+package com.kotlin.ivanpaulrutale.newsapp.views
 
 
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -8,26 +10,25 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.kotlin.ivanpaulrutale.newsapp.*
-import com.kotlin.ivanpaulrutale.newsapp.adapters.Adapter_DB
-import com.kotlin.ivanpaulrutale.newsapp.database.database
-import org.jetbrains.anko.db.classParser
-import org.jetbrains.anko.db.select
-import java.util.ArrayList
-
+import com.kotlin.ivanpaulrutale.newsapp.R
+import com.kotlin.ivanpaulrutale.newsapp.providers.customAdapter
+import com.kotlin.ivanpaulrutale.newsapp.providers.getNews
 
 
 /**
  * A simple [Fragment] subclass.
  *
  */
-class SavedFragment : Fragment() {
+class FragmentTemplate : Fragment() {
+
+    var country:String ?= null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
 
         val view = inflater.inflate(R.layout.fragment_news, container, false)
         // Inflate the layout for this fragment
@@ -37,24 +38,26 @@ class SavedFragment : Fragment() {
 
         recyclerView.layoutManager = linearLayoutManager
 
-        val news = ArrayList<Article_DB>()
-        news.addAll(returnArticles() as ArrayList<Article_DB>)
+        recyclerView.adapter = customAdapter
 
-        val adapter_DB = Adapter_DB()
-        adapter_DB.newsList.addAll(news)
-        recyclerView.adapter = adapter_DB
-
+        getNews(activity as Activity,country!!)
         return view
     }
 
-    private fun returnArticles(): List<Article_DB>? {
-        return activity?.database?.use {
-            select("Article"
-            ).parseList(classParser<Article_DB>())
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        arguments?.getString("country")?.let {
+            country = it
+        }
+    }
+
+    companion object{
+        fun newInstance(country:String) = FragmentTemplate().apply {
+            arguments = Bundle().apply {
+                putString("country",country)
+            }
         }
     }
 
 
 }
-
-

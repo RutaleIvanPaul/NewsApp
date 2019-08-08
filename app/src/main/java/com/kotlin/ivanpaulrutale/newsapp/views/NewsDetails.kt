@@ -1,4 +1,4 @@
-package com.kotlin.ivanpaulrutale.newsapp.Views
+package com.kotlin.ivanpaulrutale.newsapp.views
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,12 +7,11 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.kotlin.ivanpaulrutale.newsapp.R
-import com.kotlin.ivanpaulrutale.newsapp.database.database
+import com.kotlin.ivanpaulrutale.newsapp.database.deleteArticle
+import com.kotlin.ivanpaulrutale.newsapp.database.saveArticle
 import com.squareup.picasso.Picasso
 
 import kotlinx.android.synthetic.main.activity_news_details.*
-import org.jetbrains.anko.db.insert
-import java.lang.Exception
 
 class NewsDetails : AppCompatActivity() {
 
@@ -48,7 +47,7 @@ class NewsDetails : AppCompatActivity() {
         }
 
         findViewById<Button>(R.id.ShareButton).setOnClickListener {
-            saveSharedArticle(source,author,news_headline,news_description,url,urlToImage,publish_date)
+            saveArticle(this,"Shared_Article",source,author,news_headline,news_description,url,urlToImage,publish_date)
             startActivity(sendIntent)
         }
 
@@ -57,58 +56,20 @@ class NewsDetails : AppCompatActivity() {
             val delete_button = findViewById<Button>(R.id.SaveButton)
             delete_button.text = "Delete"
             delete_button.setOnClickListener {
-                deleteArticle(id)
+                if (activeFragment == "SharedFragment"){
+                    deleteArticle(this,"Shared_Article",id)
+                }
+                else{
+                    deleteArticle(this,"Article",id)
+                }
             }
         }
         else{
             findViewById<Button>(R.id.SaveButton).setOnClickListener {
-                saveArticle(source,author,news_headline,news_description,url,urlToImage,publish_date)
+                saveArticle(this,"Article",source,author,news_headline,news_description,url,urlToImage,publish_date)
             }
         }
 
-    }
-
-    private fun deleteArticle(id:Long) {
-        try {
-            database.use {
-                delete("Article","_id=$id", arrayOf())
-                delete("Shared_Article","_id=$id", arrayOf())
-            }
-        }
-        catch (e:Exception){
-            database.use {
-                val numRowsDeleted = delete("Shared_Article","_id=$id", arrayOf())
-        }
-        }
-    }
-
-    private fun saveSharedArticle(source_name:String,author:String,title:String,description:String,url:String,urlToImage:String,publishedAt:String) {
-        database.use {
-            insert(
-                "Shared_Article",
-                "source_name" to source_name,
-                "author" to author,
-                "title" to title,
-                "description" to description,
-                "url" to url,
-                "urlToImage" to urlToImage,
-                "publishedAt" to publishedAt
-            )
-        }
-    }
-
-    private fun saveArticle(source_name:String,author:String,title:String,description:String,url:String,urlToImage:String,publishedAt:String) {
-        database.use {
-            insert("Article",
-                "source_name" to source_name,
-                "author" to author,
-                "title" to title,
-                "description" to description,
-                "url" to url,
-                "urlToImage" to urlToImage,
-                "publishedAt" to publishedAt
-            )
-        }
     }
 
 }
