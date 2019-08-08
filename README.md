@@ -7,21 +7,21 @@ In addition, one can view international headlines, news based on other locals, s
   
 
 ## Screenshots
-| ![home view](https://github.com/King-Benx/news-watchtower-5/blob/ft-material-design-cleanup-164682501/screenshots/home.png) | ![dashboard view](https://github.com/King-Benx/news-watchtower-5/blob/ft-material-design-cleanup-164682501/screenshots/dashboard.png) |
+![Screenshot_1565290590](https://user-images.githubusercontent.com/30496434/62730451-a3bc5e00-ba28-11e9-82c9-62630831c4f9.png)
+
+![Screenshot_1565291157](https://user-images.githubusercontent.com/30496434/62730502-be8ed280-ba28-11e9-9e67-699cf1242265.png)
+
+![Screenshot_1565291245](https://user-images.githubusercontent.com/30496434/62730590-f3028e80-ba28-11e9-8fad-cd6e8bc14e42.png)
+
+![Screenshot_1565291325](https://user-images.githubusercontent.com/30496434/62730670-1e857900-ba29-11e9-809c-af432d6b3858.png)
 
 
-| ![international view](https://github.com/King-Benx/news-watchtower-5/blob/ft-material-design-cleanup-164682501/screenshots/international.png) | ![locale view](https://github.com/King-Benx/news-watchtower-5/blob/ft-material-design-cleanup-164682501/screenshots/world.png) |
 
-
-| ![detail view](https://github.com/King-Benx/news-watchtower-5/blob/ft-material-design-cleanup-164682501/screenshots/details.png) | ![share view](https://github.com/King-Benx/news-watchtower-5/blob/ft-material-design-cleanup-164682501/screenshots/share.png) |
-
-
-| ![stored view](https://github.com/King-Benx/news-watchtower-5/blob/ft-material-design-cleanup-164682501/screenshots/stored.png) | ![network view](https://github.com/King-Benx/news-watchtower-5/blob/ft-material-design-cleanup-164682501/screenshots/network.png) |
 
 ## Getting Started and Installation
 
 1. Clone this repository onto your local machine.
-`git clone https://github.com/King-Benx/news-watchtower-5.git`
+`https://github.com/RutaleIvanPaul/NewsApp.git`
 
 2. Locate the project on your machine. 
 
@@ -74,27 +74,21 @@ test folder holds the unit tests that test the logic and algorithms being used w
     https://newsapi.org/v2/everything?q={query}&apiKey={key}
 ```
 
-```
-    https://newsapi.org/v2/top-headlines?sources={source}&apiKey={key}
-```
+## Built With
 
-## Built With/ Powered by
-
-* [RxAndroid](https://github.com/ReactiveX/RxAndroid) - Asynchronous and event-based functionality
-* [RxJava](https://github.com/ReactiveX/RxJava) - Asynchronous and event-based functionality
 * [Kotlin](https://kotlinlang.org/) - Programming language
 * [Android](https://www.android.com/) - Operating System
-* [Retrofit](https://square.github.io/retrofit/) - Networking
+* [Fuel](https://github.com/kittinunf/fuel) - Networking
 * [Picasso](http://square.github.io/picasso/) - Image processing
-* [Room](https://developer.android.com/topic/libraries/architecture/room) - Database management
+* [Anko](https://github.com/Kotlin/anko/wiki/Anko-SQLite) - Database management
 
 ## Versioning
 1.0 
 
 ## Authors
-[Asiimwe Benard](https://github.com/King-Benx)
+[Rutale Ivan Paul](https://github.com/RutaleIvanPaul)
 
 
 ## Credits
-All this has been possible thanks to the services provided by these guys.
+All this has been possible thanks to the services provided by:.
 [powered by NewsAPI.org](https://newsapi.org)
