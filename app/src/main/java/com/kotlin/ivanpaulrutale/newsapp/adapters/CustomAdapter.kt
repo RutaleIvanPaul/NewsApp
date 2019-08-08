@@ -7,9 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import com.kotlin.ivanpaulrutale.newsapp.Article
+import com.kotlin.ivanpaulrutale.newsapp.models.Article
 import com.kotlin.ivanpaulrutale.newsapp.R
-import com.kotlin.ivanpaulrutale.newsapp.Views.NewsDetails
+import com.kotlin.ivanpaulrutale.newsapp.views.NewsDetails
 import com.squareup.picasso.Picasso
 
 class CustomAdapter : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {

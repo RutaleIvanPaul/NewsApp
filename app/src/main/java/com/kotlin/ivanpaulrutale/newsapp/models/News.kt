@@ -1,7 +1,5 @@
-package com.kotlin.ivanpaulrutale.newsapp
+package com.kotlin.ivanpaulrutale.newsapp.models
 
-data class News(val headline:String) {
-}
 /**
  * 3 classes responsible for how our requests are represented.
  */

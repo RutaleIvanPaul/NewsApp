@@ -1,4 +1,4 @@
-package com.kotlin.ivanpaulrutale.newsapp.Views
+package com.kotlin.ivanpaulrutale.newsapp.views
 
 
 import android.os.Bundle
@@ -8,9 +8,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.kotlin.ivanpaulrutale.newsapp.Article_DB
-import com.kotlin.ivanpaulrutale.newsapp.adapters.CustomAdapter
-import com.kotlin.ivanpaulrutale.newsapp.News
+import com.kotlin.ivanpaulrutale.newsapp.models.Article_DB
 import com.kotlin.ivanpaulrutale.newsapp.R
 import com.kotlin.ivanpaulrutale.newsapp.adapters.Adapter_DB
 import com.kotlin.ivanpaulrutale.newsapp.database.database
@@ -39,20 +37,18 @@ class SharedFragment : Fragment() {
         recyclerView.layoutManager = linearLayoutManager
 
         val news = ArrayList<Article_DB>()
-        news.addAll(returnArticles() as ArrayList<Article_DB>)
+        news.addAll(activity?.database?.use {
+            select("Shared_Article"
+            ).parseList(classParser<Article_DB>())
+        } as ArrayList<Article_DB>)
 
         val adapter_DB = Adapter_DB()
         adapter_DB.newsList.addAll(news)
         recyclerView.adapter = adapter_DB
 
-        return view
-    }
+        activeFragment = "SharedFragment"
 
-    private fun returnArticles(): List<Article_DB>? {
-        return activity?.database?.use {
-            select("Shared_Article"
-            ).parseList(classParser<Article_DB>())
-        }
+        return view
     }
 
 

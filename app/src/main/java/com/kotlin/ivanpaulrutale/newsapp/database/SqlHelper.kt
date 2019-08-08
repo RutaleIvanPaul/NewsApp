@@ -50,3 +50,28 @@ class SqlHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "saved_news") {
 // Access property for Context
 val Context.database: SqlHelper
     get() = SqlHelper.getInstance(applicationContext)
+
+fun saveArticle(context: Context,table:String,source_name:String,author:String,title:String,description:String,url:String,urlToImage:String,publishedAt:String):Long {
+    val row_id = context.database.use {
+        insert(table,
+            "source_name" to source_name,
+            "author" to author,
+            "title" to title,
+            "description" to description,
+            "url" to url,
+            "urlToImage" to urlToImage,
+            "publishedAt" to publishedAt
+        )
+    }
+    return row_id
+}
+
+fun deleteArticle(context: Context,table: String,id:Long):Int {
+    val number_rows_deleted= context.database.use {
+        delete(table,"_id=$id", arrayOf())
+    }
+
+    return number_rows_deleted
+
+
+}
