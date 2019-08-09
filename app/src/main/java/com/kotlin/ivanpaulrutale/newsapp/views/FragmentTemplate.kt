@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import com.kotlin.ivanpaulrutale.newsapp.R
 import com.kotlin.ivanpaulrutale.newsapp.providers.customAdapter
 import com.kotlin.ivanpaulrutale.newsapp.providers.getNews
+import kotlinx.android.synthetic.main.fragment_news.*
 
 
 /**
@@ -41,6 +42,7 @@ class FragmentTemplate : Fragment() {
         recyclerView.adapter = customAdapter
 
         getNews(activity as Activity,country!!)
+
         return view
     }
 
