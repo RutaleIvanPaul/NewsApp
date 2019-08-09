@@ -1,19 +1,27 @@
 package com.kotlin.ivanpaulrutale.newsapp
 
+import android.support.test.InstrumentationRegistry
 import android.support.test.espresso.Espresso
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.Espresso.pressBack
 import android.support.test.espresso.action.ViewActions
+import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.assertion.ViewAssertions
+import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.contrib.RecyclerViewActions
 import android.support.test.espresso.matcher.ViewMatchers
+import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import android.support.v7.widget.RecyclerView
+import androidx.test.uiautomator.UiDevice
 import com.kotlin.ivanpaulrutale.newsapp.adapters.Adapter_DB
+import com.kotlin.ivanpaulrutale.newsapp.adapters.CustomAdapter
 import com.kotlin.ivanpaulrutale.newsapp.database.database
 import com.kotlin.ivanpaulrutale.newsapp.models.Article_DB
 import com.kotlin.ivanpaulrutale.newsapp.views.MainActivity
+import junit.framework.TestCase
+import junit.framework.TestCase.assertEquals
 import org.jetbrains.anko.db.insert
 import org.junit.Assert
 import org.junit.Rule
@@ -52,27 +60,55 @@ class SharedNewsTest {
                 "publishedAt" to article_DB.publishedAt)
         }
         Thread.sleep(2000)
-        onView(ViewMatchers.withId(R.id.shared)).perform(ViewActions.click())
+        onView(withId(R.id.shared)).perform(click())
         val recycler_view: RecyclerView = mainActivity.getActivity().findViewById(R.id.recycler_view)
         val itemCount:Int?
         itemCount = recycler_view.adapter?.itemCount
+        Thread.sleep(2000)
+        onView(withId(R.id.recycler_view))
+            .perform(RecyclerViewActions.actionOnItemAtPosition<Adapter_DB.ViewHolder>(itemCount!!.minus(1), click()))
+        onView(withId(R.id.tableLayout)).check(ViewAssertions.matches(isDisplayed()))
+        onView(withId(R.id.SaveButton)).perform(click())
+        onView(withText("Yes")).perform(click())
 
-        Espresso.onView(ViewMatchers.withId(R.id.recycler_view))
-            .perform(RecyclerViewActions.actionOnItemAtPosition<Adapter_DB.ViewHolder>(0, ViewActions.click()))
-        onView(ViewMatchers.withId(R.id.tableLayout)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-        onView(ViewMatchers.withId(R.id.SaveButton)).perform(ViewActions.click())
-        pressBack()
-        onView(ViewMatchers.withId(R.id.saved)).perform(ViewActions.click())
-        onView(ViewMatchers.withId(R.id.shared)).perform(ViewActions.click())
+        onView(withId(R.id.shared)).perform(click())
 
         val recycler_view2: RecyclerView = mainActivity.getActivity().findViewById(R.id.recycler_view)
         Assert.assertEquals(itemCount?.minus(1), recycler_view2.adapter?.itemCount)
 
-        mainActivity.activity.database.use {
-            delete(
-                "Shared_Article",
-                "title=Title", arrayOf())
-        }
 
     }
+
+//    @Test
+//    fun shareNewsItemTest(){
+//        val device = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation())
+//
+//        onView(withId(R.id.shared)).perform(click())
+//        val recycler_view: RecyclerView = mainActivity.getActivity().findViewById(R.id.recycler_view)
+//        val itemCount:Int?
+//        itemCount = recycler_view.adapter?.itemCount
+//        Thread.sleep(5000)
+//
+//        onView(withId(R.id.home)).perform(click())
+//        Thread.sleep(5000)
+//        onView(withId(R.id.recycler_view))
+//            .perform(RecyclerViewActions.actionOnItemAtPosition<CustomAdapter.ViewHolder>(2, click()))
+//        onView(withId(R.id.ShareButton)).perform(click())
+//        device.pressBack()
+//        pressBack()
+//
+//        onView(withId(R.id.shared)).perform(click())
+//
+//        val recycler_view2: RecyclerView = mainActivity.getActivity().findViewById(R.id.recycler_view)
+//        assertEquals(itemCount?.plus(1), recycler_view2.adapter?.itemCount)
+//
+//        Thread.sleep(5000)
+//        onView(withId(R.id.recycler_view))
+//            .perform(RecyclerViewActions.actionOnItemAtPosition<Adapter_DB.ViewHolder>(itemCount!!.minus(1), click()))
+//        onView(withId(R.id.tableLayout)).check(matches(isDisplayed()))
+//        onView(withId(R.id.SaveButton)).perform(click())
+//        onView(withText("Yes")).perform(click())
+//
+//    }
+
 }

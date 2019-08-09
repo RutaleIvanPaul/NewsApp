@@ -2,10 +2,12 @@ package com.kotlin.ivanpaulrutale.newsapp.views
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.kotlin.ivanpaulrutale.newsapp.R
 import com.kotlin.ivanpaulrutale.newsapp.database.deleteArticle
 import com.kotlin.ivanpaulrutale.newsapp.database.saveArticle
@@ -56,17 +58,41 @@ class NewsDetails : AppCompatActivity() {
             val delete_button = findViewById<Button>(R.id.SaveButton)
             delete_button.text = "Delete"
             delete_button.setOnClickListener {
+                val intent = Intent(this, MainActivity::class.java)
+                val dialogBuilder = AlertDialog.Builder(this)
+                dialogBuilder.setTitle("Delete Alert")
+                dialogBuilder.setMessage("You are about to delete this article, are you sure?")
                 if (activeFragment == "SharedFragment"){
-                    deleteArticle(this,"Shared_Article",id)
+                    dialogBuilder.setPositiveButton("Yes"){dialog,which ->
+                        deleteArticle(this,"Shared_Article",id)
+                        delete_button.isEnabled = false
+                        startActivity(intent)
+                    }
+
+                    dialogBuilder.setNegativeButton("No"){dialog, which ->
+
+                    }
+                    dialogBuilder.show()
                 }
                 else{
-                    deleteArticle(this,"Article",id)
+                    dialogBuilder.setPositiveButton("Yes"){dialog,which ->
+                        deleteArticle(this,"Article",id)
+                        delete_button.isEnabled = false
+                        startActivity(intent)
+                    }
+
+                    dialogBuilder.setNegativeButton("No"){dialog, which ->
+
+                    }
+                    dialogBuilder.show()
                 }
             }
         }
         else{
-            findViewById<Button>(R.id.SaveButton).setOnClickListener {
+            val save_button = findViewById<Button>(R.id.SaveButton)
+            save_button.setOnClickListener {
                 saveArticle(this,"Article",source,author,news_headline,news_description,url,urlToImage,publish_date)
+                save_button.isEnabled = false
             }
         }
 
