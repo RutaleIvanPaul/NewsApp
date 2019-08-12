@@ -12,6 +12,7 @@ import com.kotlin.ivanpaulrutale.newsapp.models.Article_DB
 import com.kotlin.ivanpaulrutale.newsapp.R
 import com.kotlin.ivanpaulrutale.newsapp.adapters.Adapter_DB
 import com.kotlin.ivanpaulrutale.newsapp.database.database
+import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.select
 import java.util.ArrayList
@@ -47,6 +48,7 @@ class SharedFragment : Fragment() {
         recyclerView.adapter = adapter_DB
 
         activeFragment = "SharedFragment"
+//        spinner.visibility = View.GONE
 
         return view
     }

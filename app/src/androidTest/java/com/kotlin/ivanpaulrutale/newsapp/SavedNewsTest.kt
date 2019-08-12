@@ -16,6 +16,7 @@ import com.kotlin.ivanpaulrutale.newsapp.models.Article
 import com.kotlin.ivanpaulrutale.newsapp.models.Article_DB
 import com.kotlin.ivanpaulrutale.newsapp.models.NewsReport
 import com.kotlin.ivanpaulrutale.newsapp.models.Source
+import com.kotlin.ivanpaulrutale.newsapp.views.FragmentTemplate
 import com.kotlin.ivanpaulrutale.newsapp.views.MainActivity
 import junit.framework.TestCase.assertEquals
 import org.hamcrest.CoreMatchers
@@ -96,6 +97,10 @@ class SavedNewsTest {
         assertThat(news_report.hashCode(), CoreMatchers.instanceOf(Int::class.java))
         assertThat(news_report.toString(), CoreMatchers.instanceOf(String::class.java))
         assertEquals(news_report.copy("cancel", 1L, listOf(article_DB)).status, "cancel")
+
+        val fragmentTemplate = FragmentTemplate()
+        fragmentTemplate.country = "Uganda"
+        assertEquals(fragmentTemplate.country,"Uganda")
 
 
 
