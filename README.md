@@ -3,7 +3,7 @@
 NewsApp is an application that brings you the latest news updates from various news sources. It provides you with the ability to view news updates in five locations by default Kampala, Kigali, Nairobi, NewYork, and Lagos.
 In addition, one can view international headlines, news based on other locals, share and save news reports within the application and ability to operate while offline.
 
-### [Get the app on Amazon]()
+### [Get the app on Amazon](https://www.amazon.com/gp/product/B07WCNQBMW)
   
 
 ## Screenshots
