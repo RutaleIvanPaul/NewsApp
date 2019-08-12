@@ -16,15 +16,18 @@ class MainActivity : AppCompatActivity() {
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item->
         when(item.itemId){
             R.id.home -> {
+                spinner.visibility = View.VISIBLE
                 replaceFragment(FragmentTemplate.newInstance("Uganda"))
                 populateSpinner()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.saved -> {
+                spinner.visibility = View.GONE
                 replaceFragment(SavedFragment())
                 return@OnNavigationItemSelectedListener true
             }
             R.id.shared -> {
+                spinner.visibility = View.GONE
                 replaceFragment(SharedFragment())
                 return@OnNavigationItemSelectedListener true
             }

@@ -12,6 +12,7 @@ import com.kotlin.ivanpaulrutale.newsapp.*
 import com.kotlin.ivanpaulrutale.newsapp.adapters.Adapter_DB
 import com.kotlin.ivanpaulrutale.newsapp.database.database
 import com.kotlin.ivanpaulrutale.newsapp.models.Article_DB
+import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.select
 import java.util.ArrayList

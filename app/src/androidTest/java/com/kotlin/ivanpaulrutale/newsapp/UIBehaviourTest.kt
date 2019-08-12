@@ -29,12 +29,39 @@ class UIBehaviourTest {
     @Test
     fun bottomNavigationClickedTest(){
         onView(withId(R.id.home)).check(matches(isDisplayed()))
+        onView(withId(R.id.spinner)).check(matches(isDisplayed()))
+
+        onView(withId(R.id.saved)).perform(click())
+        onView(withId(R.id.spinner)).check(matches(not(isDisplayed())))
+
+        onView(withId(R.id.shared)).perform(click())
+        onView(withId(R.id.spinner)).check(matches(not(isDisplayed())))
     }
 
     @Test
     fun spinnerClickedTest(){
         onView(withId(R.id.spinner)).perform(click())
+        onData(allOf(instanceOf(String::class.java))).atPosition(0).perform(click())
+        Thread.sleep(3000)
+        onView(withId(R.id.recycler_view)).check(matches(isDisplayed()))
+
+        onView(withId(R.id.spinner)).perform(click())
+        onData(allOf(instanceOf(String::class.java))).atPosition(1).perform(click())
+        Thread.sleep(3000)
+        onView(withId(R.id.recycler_view)).check(matches(isDisplayed()))
+
+        onView(withId(R.id.spinner)).perform(click())
+        onData(allOf(instanceOf(String::class.java))).atPosition(2).perform(click())
+        Thread.sleep(3000)
+        onView(withId(R.id.recycler_view)).check(matches(isDisplayed()))
+
+        onView(withId(R.id.spinner)).perform(click())
         onData(allOf(instanceOf(String::class.java))).atPosition(3).perform(click())
+        Thread.sleep(3000)
+        onView(withId(R.id.recycler_view)).check(matches(isDisplayed()))
+
+        onView(withId(R.id.spinner)).perform(click())
+        onData(allOf(instanceOf(String::class.java))).atPosition(4).perform(click())
         Thread.sleep(3000)
         onView(withId(R.id.recycler_view)).check(matches(isDisplayed()))
     }
